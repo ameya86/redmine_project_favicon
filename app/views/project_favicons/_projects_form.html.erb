@@ -1,0 +1,26 @@
+<%# カスタムフィールドを書き換える %>
+<% if @project && @project.project_favicon_custom_field_id %>
+<%= javascript_tag do %>
+function project_favicon_wrap_custom_field() {
+  var custom_field_id = 'project_custom_field_values_<%= @project.project_favicon_custom_field_id %>'
+  var custom_field_name = 'project[custom_field_values][<%= @project.project_favicon_custom_field_id %>]'
+  var custom_field = document.getElementById(custom_field_id);
+
+  if (null == custom_field) {
+    return;
+  }
+
+  var custom_field_parent = custom_field.parentNode;
+
+  var favicon_list = document.createElement('select');
+  favicon_list.setAttribute('id', custom_field_id);
+  favicon_list.setAttribute('name', custom_field_name);
+  favicon_list.innerHTML = "<%= escape_javascript(project_favicon_options_for_select(@project.project_favicon && @project.project_favicon.id.to_s)) %>";
+
+  $('#' + custom_field_id).remove();
+  custom_field_parent.appendChild(favicon_list);
+}
+  
+project_favicon_wrap_custom_field();
+<% end %>
+<% end %>

@@ -1,0 +1,52 @@
+= Project Favicon
+
+プロジェクトごとにFaviconを変更するプラグインです。
+Redmine2.1.x対応。
+（jQueryで書いている箇所があるため、2.0.xは対応外）
+
+
+== インストール
+
+1. RAILS_ROOT/pluginsに配置する。
+
+2. rake db:migrate_plugins RAILS_ENV=production
+   を実行する。
+
+3. Redmineを再起動する。
+
+
+== アンインストール
+
+1. rake db:migrate:plugin RAILS_ENV=production VERSION=0 NAME=redmine_touban
+   を実行する。
+
+2. RAILS_ROOT/pluginsから削除する。
+
+3. Redmineを再起動する。
+
+4. 管理 => カスタムフィールド => プロジェクト から"Favicon"カスタムフィールドを削除する。
+
+
+== 使い方
+
+プロジェクトの"ファイル"モジュールを有効にし、Faviconにしたい画像をアップロードします。
+次に、プロジェクトの"設定"画面を開き、"情報"タブの"Favicon"欄でFaviconにしたい画像を選択してプロジェクトの設定を更新してください。
+プロジェクトを開いている時のFaviconが設定した画像になるはずです。
+
+なお、画像アップロード後は、ファイルモジュールはオフにしても問題ありません。
+
+
+== 備考
+
+Favicon画像へのアクセスが、Redmine経由になっているので、ページを表示する度に
+2回分のアクセスが発生してしまう。
+性能に影響が出る恐れがあります。
+自己責任で使うか、改造してください。
+
+
+== 更新履歴
+
+=== Version 0,0,1
+
+未完成版。
+自己責任でどうぞ。
